@@ -8,7 +8,7 @@ const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
 
 mongoose.connect(dbURL,{ useNewUrlParser: true });
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.get('/',(req, res) => {
     res.send('Hello world');
