@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 
 const sketchSchema = require('./models/sketch.model');
-const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
+const dbURL = 'mongodb://sengathit:Slvanh77@ds117423.mlab.com:17423/sketch';
 
 mongoose.connect(dbURL,{ useNewUrlParser: true });
 
