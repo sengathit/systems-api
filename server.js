@@ -17,7 +17,12 @@ app.get('/',(req, res) => {
 app.get('/api/photos',cors(),(req,res) => {
     let doodles = mongoose.model('Doodl', sketchSchema);
     doodles.find().then(docs => {
-        res.send(docs)
+        if(docs.length == 0){
+            res.status(200).send('Nothing')
+        }else{
+            res.send(docs)
+        }
+        
     },err => res.status(400).send(err));
     // if(!sketch){
     //     res.status(400).send({err: 'nada'})
