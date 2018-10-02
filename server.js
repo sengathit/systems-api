@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 
 const sketchSchema = require('./models/sketch.model');
-const dbURL = 'mongodb://sengathit:Slvanh77@ds117423.mlab.com:17423/sketch';
+const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
 
 mongoose.connect(dbURL,{ useNewUrlParser: true });
 
@@ -15,14 +15,9 @@ app.get('/',(req, res) => {
 });
 
 app.get('/api/photos',cors(),(req,res) => {
-    let doodles = mongoose.model('Doodl', sketchSchema);
+    let doodles = mongoose.model('Doodle', sketchSchema);
     doodles.find().then(docs => {
-        if(docs.length == 0){
-            res.status(200).send('Nothing')
-        }else{
-            res.send(docs)
-        }
-        
+        res.send(docs)
     },err => res.status(400).send(err));
     // if(!sketch){
     //     res.status(400).send({err: 'nada'})
