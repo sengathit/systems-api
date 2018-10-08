@@ -16,7 +16,7 @@ app.get('/',(req, res) => {
 
 app.get('/api/photos',cors(),(req,res) => {
     let doodles = mongoose.model('Doodles', sketchSchema);
-    console.log(doodles);
+    res.send(doodles);
     // doodles.find().then(docs => {
     //     res.send(docs)
     //     mongoose.connection.close();
