@@ -15,18 +15,12 @@ app.get('/',(req, res) => {
 });
 
 app.get('/api/photos',cors(),(req,res) => {
-    let doodle = mongoose.model('Doodles', sketchSchema);
-    doodle.find().then(docs => {
-        res.send(docs)
-        mongoose.connection.close();
-    },err => res.status(400).send(err));
-    // if(!sketch){
-    //     res.status(400).send({err: 'nada'})
-    // }else{
-
-    //     let data = sketch.find();
-    //     res.send(data);
-    // }
+    let doodles = mongoose.model('Doodles', sketchSchema);
+    console.log(doodles);
+    // doodles.find().then(docs => {
+    //     res.send(docs)
+    //     mongoose.connection.close();
+    // },err => res.status(400).send(err));
 });
 
 app.listen(port, () => console.log('Server started on port ' + port));
