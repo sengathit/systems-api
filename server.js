@@ -19,13 +19,6 @@ app.get('/api/photos',cors(),(req,res) => {
     doodles.find().then(docs => {
         res.send(docs)
     },err => res.status(400).send(err));
-    // if(!sketch){
-    //     res.status(400).send({err: 'nada'})
-    // }else{
-
-    //     let data = sketch.find();
-    //     res.send(data);
-    // }
 });
 
 app.listen(port, () => console.log('Server started on port ' + port));
