@@ -16,11 +16,9 @@ app.get('/',(req, res) => {
 
 app.get('/api/photos',cors(),(req,res) => {
     let doodles = mongoose.model('Doodles', sketchSchema);
-    res.send(doodles);
-    // doodles.find().then(docs => {
-    //     res.send(docs)
-    //     mongoose.connection.close();
-    // },err => res.status(400).send(err));
+    doodles.findOne().then(docs => {
+        res.send(docs)
+    },err => res.status(400).send(err));
 });
 
 app.listen(port, () => console.log('Server started on port ' + port));
