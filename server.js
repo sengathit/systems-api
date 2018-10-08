@@ -15,8 +15,8 @@ app.get('/',(req, res) => {
 });
 
 app.get('/api/photos',cors(),(req,res) => {
-    let doodles = mongoose.model('Doodles', sketchSchema);
-    doodles.findOne().then(docs => {
+    let doodles = mongoose.model('Doodles', sketchSchema,doodles);
+    doodles.find().then(docs => {
         res.send(docs)
     },err => res.status(400).send(err));
 });
