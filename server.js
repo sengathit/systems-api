@@ -18,6 +18,7 @@ app.get('/api/photos',cors(),(req,res) => {
     let doodle = mongoose.model('Doodles', sketchSchema);
     doodle.find().then(docs => {
         res.send(docs)
+        mongoose.connection.close();
     },err => res.status(400).send(err));
     // if(!sketch){
     //     res.status(400).send({err: 'nada'})
