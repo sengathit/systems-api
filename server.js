@@ -9,13 +9,14 @@ const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
 mongoose.connect(dbURL,{ useNewUrlParser: true });
 
 const port = process.env.PORT || 3000;
+let doodles = mongoose.model('Doodles', sketchSchema,'doodles');
 
 app.get('/',(req, res) => {
     res.send('Hello world');
 });
 
 app.get('/api/photos',cors(),(req,res) => {
-    let doodles = mongoose.model('Doodles', sketchSchema,'doodles');
+    
     doodles.find().then(docs => {
         res.send(docs)
     },err => res.status(400).send(err));
