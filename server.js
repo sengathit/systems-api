@@ -15,10 +15,17 @@ app.get('/',(req, res) => {
 });
 
 app.get('/api/photos',cors(),(req,res) => {
-    let doodles = mongoose.model('Doodles', sketchSchema);
+    let doodles = mongoose.model('Doodle', sketchSchema);
     doodles.find().then(docs => {
         res.send(docs)
     },err => res.status(400).send(err));
+    // if(!sketch){
+    //     res.status(400).send({err: 'nada'})
+    // }else{
+
+    //     let data = sketch.find();
+    //     res.send(data);
+    // }
 });
 
 app.listen(port, () => console.log('Server started on port ' + port));
