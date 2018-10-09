@@ -16,10 +16,13 @@ app.get('/',(req, res) => {
 });
 
 app.get('/api/photos',cors(),(req,res) => {
-    
     doodles.find().then(docs => {
         res.send(docs)
     },err => res.status(400).send(err));
+});
+
+app.post('/api/photos',cors(),(req,res) => {
+    res.send('heloo')
 });
 
 app.listen(port, () => console.log('Server started on port ' + port));
