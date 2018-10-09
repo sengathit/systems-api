@@ -31,13 +31,13 @@ app.post('/api/photos',(req,res) => {
     let currentDate = new Date();
     console.log(body);
     let upload = new doodles({title: body.title, description: body.description, img: body.img, date: currentDate.getTime()});
-    upload.save((err,doc) => {
+    upload.save((err,upload) => {
         if(err) {
             res.status(400).send(err);
             return;
         }
 
-        res.send(doc)
+        res.send(upload);
     })
     
 });
