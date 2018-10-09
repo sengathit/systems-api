@@ -34,14 +34,7 @@ app.post('/api/photos',(req,res) => {
     upload.title = body.title;
     upload.img = body.img;
     upload.description = body.description;
-    upload.save((err,doc) => {
-        if(err) {
-            res.status(400).send(err);
-            return;
-        }
-
-        res.send(doc);
-    })
+    upload.save();
     
 });
 
