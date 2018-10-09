@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 
@@ -12,6 +13,8 @@ const port = process.env.PORT || 3000;
 let doodles = mongoose.model('Doodles', sketchSchema,'doodles');
 
 app.use(cors());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json())
 
 app.get('/',(req, res) => {
     res.send('Hello world');
@@ -24,7 +27,8 @@ app.get('/api/photos',(req,res) => {
 });
 
 app.post('/api/photos',(req,res) => {
-    res.send('heloo')
+    let body = req.body;
+    res.send(body);
 });
 
 app.listen(port, () => console.log('Server started on port ' + port));
