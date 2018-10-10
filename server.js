@@ -15,6 +15,7 @@ mongoose.connect(dbURL,{ useNewUrlParser: true });
 
 const port = process.env.PORT || 3000;
 let doodles = mongoose.model('Doodles', sketchSchema);
+let postDoodles = mongoose.model('Doodles', sketchSchema);
 
 app.get('/',(req, res) => {
     res.send('Hello world');
@@ -28,17 +29,14 @@ app.get('/api/photos',(req,res) => {
 
 app.post('/api/photos',(req,res) => {
     let body = req.body;
-    let upload = new doodles();
-    upload.title = body.title;
-    upload.description = body.description;
-    upload.img = body.img;
+    let upload = new postDoodles({title: body.title,description: body.description, img: body.img});
     upload.save((err) => {
         if(err) {
             res.status(400).send(err);
         }else{
             res.send('saved');
         }
-    })
+    });
     
 });
 
