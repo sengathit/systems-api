@@ -26,13 +26,20 @@ app.get('/api/photos',(req,res) => {
     },err => res.status(400).send(err));
 });
 
-app.post('/api/upload',(req,res) => {
+app.post('/api/photos',(req,res) => {
     let body = req.body;
-    let currentDate = new Date();
-    let upload = new doodles({title: body.title,description: body.description, img: body.img});
-    upload.save((err,doc) => {
-        if(err) {
-            res.status(400).send(err);
+    
+    // let upload = new doodles({title: body.title,description: body.description, img: body.img});
+    // upload.save((err,doc) => {
+    //     if(err) {
+    //         res.status(400).send(err);
+    //     }else{
+    //         res.send(doc);
+    //     }
+    // })
+    doodles.create({title: body.title,description: body.description, img: body.img},(err,doc) => {
+        if(err){
+            res.status(400).send(err)
         }else{
             res.send(doc);
         }
