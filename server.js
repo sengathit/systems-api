@@ -10,27 +10,31 @@ app.use(bodyParser.json());
 
 const sketchSchema = require('./models/sketch.model');
 const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
-const localDB = 'mongodb://localhost:27017/sketch';
 
 mongoose.connect(dbURL,{ useNewUrlParser: true });
 
 const port = process.env.PORT || 3000;
-let doodles = mongoose.model('Doodles', sketchSchema);
+let doodles = mongoose.model('Doodles', sketchSchema,'doodles');
 
 app.get('/',(req, res) => {
     res.send('Hello world');
 });
 
+app.get('/api/photos',(req,res) => {
+    doodles.find().then(docs => {
+        res.send(docs)
+    },err => res.status(400).send(err));
+});
 
 app.post('/api/photos',(req,res) => {
     let body = req.body;
-    let doodle = new doodles({img: body.img,description: body.description,title: body.title});
-    doodle.save((err
-    ) => {
+    let upload = new doodles({title: body.title, description: body.description, img: body.img});
+    upload.save((err,doc) => {
         if(err) {
             res.status(400).send(err);
+            return;
         }else{
-            res.send(body);
+            res.send(doc)
         }
     });
     
