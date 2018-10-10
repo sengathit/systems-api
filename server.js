@@ -28,9 +28,19 @@ app.get('/api/photos',(req,res) => {
 
 app.post('/api/photos',(req,res) => {
     let body = req.body;
-    let upload = new doodles({title: body.title,description: body.description, img: body.img});
-    upload.save().then(doc => {
-        res.send(doc);
+    // let upload = new doodles({title: body.title,description: body.description, img: body.img});
+    // upload.save().then(doc => {
+    //     res.send(doc);
+    // });
+    doodles.title = body.title;
+    doodles.img = body.img;
+    doodles.description = body.description;
+    doodles.save((err,doc) => {
+        if(err){
+            res.status(400).send(err);
+        }else{
+            res.send(doc);
+        }
     });
     
 });
