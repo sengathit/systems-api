@@ -4,14 +4,14 @@ const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 
-mongoose.connect(dbURL,{ useNewUrlParser: true });
-
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 const sketchSchema = require('./models/sketch.model');
 const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
+
+mongoose.connect(dbURL,{ useNewUrlParser: true });
 
 const port = process.env.PORT || 3000;
 let doodles = mongoose.model('Doodles', sketchSchema);
@@ -23,7 +23,7 @@ app.get('/',(req, res) => {
 
 app.post('/api/photos',(req,res) => {
     let body = req.body;
-    let doodle = new doodles({title: body.title});
+    let doodle = new doodles({img: body.img,description: body.description,title: body.title});
     doodle.save((err
     ) => {
         if(err) {
