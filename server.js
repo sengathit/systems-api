@@ -13,6 +13,11 @@ const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
 
 mongoose.connect(dbURL,{ useNewUrlParser: true });
 
+let db = mongoose.connection;
+
+db.on('err',err => console.log(err));
+db.once('open',() => console.log('connected'));
+
 const port = process.env.PORT || 3000;
 let doodles = mongoose.model('Doodles', sketchSchema);
 
