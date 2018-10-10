@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
-let doodles = mongoose.model('Doodles', sketchSchema);
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -14,7 +13,13 @@ const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
 
 mongoose.connect(dbURL,{ useNewUrlParser: true });
 
+let db = mongoose.connection;
+
+db.on('err',err => console.log(err));
+db.once('open',() => console.log('connected'));
+
 const port = process.env.PORT || 3000;
+let doodles = mongoose.model('Doodles', sketchSchema);
 
 app.get('/',(req, res) => {
     res.send('Hello world');
@@ -23,10 +28,15 @@ app.get('/',(req, res) => {
 
 app.post('/api/photos',(req,res) => {
     let body = req.body;
-    let doodle = new doodles({title: body.title});
-    doodle.save().then(doc => {
-        res.send(doc)
-    },e => res.send(e));
+    let doodle = new doodles({title: body.title,description: body.description, img: body.img});
+    doodle.save((err
+    ) => {
+        if(err) {
+            res.status(400).send(err);
+        }else{
+            res.send(body);
+        }
+    });
     
 });
 
