@@ -15,6 +15,3 @@ const sketchSchema = mongoose.Schema({
 });
 
 module.exports = sketchSchema;
-
-// var schema = new mongoose.Schema({ name: 'string', size: 'string' });
-// var Tank = mongoose.model('Tank', schema);
