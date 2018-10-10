@@ -31,10 +31,9 @@ app.post('/api/photos',(req,res) => {
     let currentDate = new Date();
     console.log(body);
     let upload = new doodles();
-    upload.title = body.title;
-    upload.img = body.img;
-    upload.description = body.description;
-    upload.save();
+    upload.create({title: body.title,description: body.description,img: body.img}).then(doc => {
+        res.send(doc);
+    });
     
 });
 
