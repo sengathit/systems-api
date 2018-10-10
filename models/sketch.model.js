@@ -1,10 +1,23 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-let sketchSchema = new mongoose.Schema({
-    title: String
+const sketchSchema = mongoose.Schema({
+    img: {
+        type: String,
+        default: 'someImage'
+    },
+    title: {
+        type: String,
+        required: true,
+        minlength: 3
+    },
+    description: {
+        type: String,
+        default: 'sketches'
+    }
+
 });
 
-module.exports = { sketchSchema };
+module.exports = mongoose.model('Doodles',sketchSchema);
 
 // var schema = new mongoose.Schema({ name: 'string', size: 'string' });
 // var Tank = mongoose.model('Tank', schema);

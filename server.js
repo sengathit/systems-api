@@ -4,14 +4,14 @@ const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 
-app.use(cors());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-
 const sketchSchema = require('./models/sketch.model');
 const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
 
 mongoose.connect(dbURL,{ useNewUrlParser: true });
+
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 let db = mongoose.connection;
 
