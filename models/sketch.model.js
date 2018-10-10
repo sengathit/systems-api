@@ -10,9 +10,7 @@ const sketchSchema = new mongoose.Schema({
     description: {
         type: String,
         default: 'sketches'
-    },
-    date: Number
-
+    }
 });
 
 module.exports = { sketchSchema };
