@@ -28,7 +28,7 @@ app.get('/',(req, res) => {
 
 app.post('/api/photos',(req,res) => {
     let body = req.body;
-    let doodle = new doodles({title: body.title,description: body.description, img: body.img});
+    let doodle = new doodles({title: body.title});
     doodle.save((err
     ) => {
         if(err) {

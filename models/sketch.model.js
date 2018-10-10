@@ -1,16 +1,7 @@
-const mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-const sketchSchema = new mongoose.Schema({
-    img: String,
-    title: {
-        type: String,
-        required: true,
-        minlength: 3
-    },
-    description: {
-        type: String,
-        default: 'sketches'
-    }
+let sketchSchema = new mongoose.Schema({
+    title: String
 });
 
 module.exports = { sketchSchema };
