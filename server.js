@@ -26,7 +26,7 @@ app.get('/api/photos',(req,res) => {
     },err => res.status(400).send(err));
 });
 
-app.put('/api/photos',(req,res) => {
+app.post('/api/photos',(req,res) => {
     let body = req.body;
     let upload = new doodles({title: body.title, description: body.description, img: body.img});
     upload.save((err,doc) => {
