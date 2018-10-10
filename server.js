@@ -25,23 +25,13 @@ app.get('/',(req, res) => {
     res.send('Hello world');
 });
 
-app.get('/api/photos',(req,res) => {
-    doodles.find().then(docs => {
-        res.send(docs)
-    },err => res.status(400).send(err));
-});
 
 app.post('/api/photos',(req,res) => {
     let body = req.body;
-    let doodle = new doodles({title: body.title,description: body.description, img: body.img});
-    doodle.save((err
-    ) => {
-        if(err) {
-            res.status(400).send(err);
-        }else{
-            res.send(body);
-        }
-    });
+    let doodle = new doodles({title: body.title});
+    doodle.save().then(doc => {
+        res.send(doc)
+    },e => res.send(e));
     
 });
 
