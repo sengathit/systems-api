@@ -6,6 +6,7 @@ const cors = require('cors');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(cors(corsOptions));
 
 const sketchSchema = require('./models/sketch.model');
 const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
