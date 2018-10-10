@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const sketchSchema = mongoose.Schema({
-    img: {
-        type: String,
-        default: 'someImage'
-    },
+    img: String,
     title: {
         type: String,
         required: true,
@@ -17,7 +14,7 @@ const sketchSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('Doodles',sketchSchema);
+module.exports.sketchSchema = sketchSchema;
 
 // var schema = new mongoose.Schema({ name: 'string', size: 'string' });
 // var Tank = mongoose.model('Tank', schema);
