@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 const sketchSchema = require('./models/sketch.model');
 const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
+const localDB = 'mongodb://localhost:27017/sketch';
 
 mongoose.connect(dbURL,{ useNewUrlParser: true });
 
