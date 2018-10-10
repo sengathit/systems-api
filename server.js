@@ -4,15 +4,15 @@ const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 const sketchSchema = require('./models/sketch.model');
 const dbURL = 'mongodb://sengathit:Slavanh77@ds117423.mlab.com:17423/sketch';
@@ -26,7 +26,7 @@ app.get('/',(req, res) => {
     res.send('Hello world');
 });
 
-app.get('/api/photos',(req,res) => {
+app.get('/api/photos',cors(corsOptions),(req,res) => {
     doodles.find().then(docs => {
         res.send(docs)
     },err => res.status(400).send(err));
