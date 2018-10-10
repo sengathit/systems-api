@@ -37,11 +37,11 @@ app.get('/api/yo',(req,res) => {
         }
     );
 
-    upload.save((err,doc) => {
+    upload.save((err) => {
         if(err) {
             res.status(400).send(err);
         }else{
-            res.send(doc);
+            res.send('doc');
         }
     });
 })
