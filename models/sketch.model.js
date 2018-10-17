@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 const sketchSchema = mongoose.Schema({
-    img: String,
+    img: {
+        data: Buffer
+    },
     title: {
         type: String,
         required: true,
